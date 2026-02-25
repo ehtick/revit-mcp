@@ -59,20 +59,20 @@ Claude客户端->Settings > Developer > Edit Config > claude_desktop_config.json
 
 重启Claude客户端，看到小锤子则正常连接到mcp服务
 
-![claude](.\assets\claude.png)
+![claude](./assets/claude.png)
 
 ## 实现框架
 
 ```mermaid
 flowchart LR
-	CladueDesktop --> revit-mcp --> SocketService--commandName-->CommandlSet--command-->CommandExecute
-	CommandManager --> CommandlSet
+	ClaudeDesktop --> revit-mcp --> SocketService--commandName-->CommandSet--command-->CommandExecute
+	CommandManager --> CommandSet
 	CommandExecute --executeResult--> SocketService
 	CommandProject1 --> CommandManager
 	CommandProject2 --> CommandManager
 	CommandProject... --> CommandManager
 	subgraph ide1 [MCPClient]
-	CladueDesktop
+	ClaudeDesktop
 	end
 	subgraph ide2 [MCPServer]
 	revit-mcp
@@ -80,30 +80,40 @@ flowchart LR
 	subgraph ide3 [Revit]
 			subgraph ide3.1 [revit-mcp-plugin]
 				SocketService
-				CommandlSet
+				CommandSet
 				CommandManager
 				CommandExecute
 			end
 	end
 ```
 
-## 支持的Tools
+## 支持的工具
 
-| 名称                       | 说明                               |
-| -------------------------- | ---------------------------------- |
-| get_current_view_info      | 获得当前视图信息                   |
-| get_current_view_elements  | 获得当前视图的元素                 |
-| get_available_family_types | 获得当前项目中可以使用的族类型         |
-| get_selected_elements      | 获得选中的元素                         |
-| create_point_based_element  | 创建点式元素（例如门、窗、家具等） |
-| create_line_based_element   | 创建线式元素（例如墙、梁、管道等） |
-| create_surface_based_element   | 创建面状元素（例如地板、天花板等） |
-| delete_elements             | 删除元素                           |
-| reset_model                | 重置模型(在执行连续对话时，删除过程模型) |
-| modify_element             | 修改元素的属性（实例参数）         |
-| search_modules             | 搜索可用模块                       |
-| use_module                 | 使用模块                           |
-| send_code_to_revit         | 发送代码到Revit中执行              |
-| color_splash		     | 基于参数值对元素进行着色 |
-| tag_walls		     | 在视图中标记所有墙体 |
+| 名称 | 说明 |
+| ---- | ---- |
+| get_current_view_info | 获取当前活动视图信息 |
+| get_current_view_elements | 获取当前活动视图中的元素 |
+| get_available_family_types | 获取当前项目中可用的族类型 |
+| get_selected_elements | 获取当前选中的元素 |
+| get_material_quantities | 计算材料用量和工程量 |
+| ai_element_filter | AI 智能元素查询工具 |
+| analyze_model_statistics | 分析模型复杂度和元素统计 |
+| create_point_based_element | 创建点式元素（门、窗、家具等） |
+| create_line_based_element | 创建线式元素（墙、梁、管道等） |
+| create_surface_based_element | 创建面状元素（楼板、天花板、屋顶等） |
+| create_grid | 创建轴网系统 |
+| create_level | 在指定标高创建楼层 |
+| create_room | 在指定位置创建和放置房间 |
+| create_structural_framing_system | 创建结构梁系统 |
+| delete_element | 按 ID 删除元素 |
+| operate_element | 操作元素（选择、设置颜色、隐藏等） |
+| color_elements | 基于参数值对元素进行着色 |
+| tag_all_walls | 标注当前视图中的所有墙体 |
+| tag_all_rooms | 标注当前视图中的所有房间 |
+| export_room_data | 导出项目中的所有房间数据 |
+| store_project_data | 将项目元数据存储到本地数据库 |
+| store_room_data | 将房间元数据存储到本地数据库 |
+| query_stored_data | 查询已存储的项目和房间数据 |
+| send_code_to_revit | 发送 C# 代码到 Revit 中执行 |
+| say_hello | 在 Revit 中显示问候对话框（连接测试） |
 
