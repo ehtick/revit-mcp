@@ -1,3 +1,19 @@
+🔴
+
+> [!WARNING]
+> Deprecation notice, this repo is being archived in favour of the mono repo approch for the mcp https://github.com/mcp-servers-for-revit/mcp-servers-for-revit
+> Simpler CI, less confusion for noobs, npm package and simpler install
+
+
+---
+---
+
+
+
+
+
+
+
 [![MseeP.ai Security Assessment Badge](https://mseep.net/pr/revit-mcp-revit-mcp-badge.png)](https://mseep.ai/app/revit-mcp-revit-mcp)
 
 # revit-mcp
